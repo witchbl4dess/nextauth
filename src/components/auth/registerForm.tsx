@@ -4,7 +4,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterSchema } from "@/schemas";
-import { login } from "@/actions/login";
+import { register } from "@/actions/register";
 import { useTransition, useState } from "react";
 
 import { FormError } from "@/components/formError";
@@ -35,7 +35,7 @@ export const RegisterForm = () => {
         setSuccess("");
 
         startTransition(() => {
-            login(values)
+            register(values)
             .then((data) => {
                 setError(data.error);
                 setSuccess(data.success);
@@ -78,7 +78,7 @@ export const RegisterForm = () => {
                 <FormError message={error} />
                 <FormSucces message={success} />
                 <Button disabled={isPending} type="submit" className="w-full">
-                    Login
+                    Create an account
                 </Button>
             </form>
         </Form>
